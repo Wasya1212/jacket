@@ -1,0 +1,52 @@
+@import '../mixins/heart.sass'
+@import '../mixins/temperature.sass'
+@import '../variables.sass'
+
+$icon-size: 50px
+
+%live-value
+  font-weight: $health-status-font-weight
+  font-size: $health-status-font-size
+  color: $health-status-text-color
+  cursor: default
+  user-select: none
+
+.app-status-bar
+  position: relative
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  justify-content: center
+  &__heart
+    padding: 2rem 0
+    align-self: center
+    &__value
+      @extend %live-value
+      &::after
+        @extend %live-value
+        content: 'BPM'
+        font-size: $health-status-font-size * 0.6
+        margin-left: .6ch
+    &__icon
+      transform: translateY(($icon-size - $health-status-font-size) / 2)
+      display: inline-block
+      margin-right: 1ch
+      .heart
+        @include heart($icon-size)
+  &__temperature
+    padding: 2rem 0
+    align-self: center
+    &__value
+      @extend %live-value
+      &::after
+        @extend %live-value
+        content: '°C'
+        font-size: $health-status-font-size * 0.6
+        margin-left: .6ch
+        letter-spacing: -($health-status-font-size * 0.6) / 7
+    &__icon
+      transform: translateY(($icon-size - $health-status-font-size) / 2)
+      display: inline-block
+      margin-right: 1ch
+      .temperature
+        @include temperature($icon-size)

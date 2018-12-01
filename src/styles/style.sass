@@ -1,0 +1,32 @@
+$major-padding: .5rem 1rem
+
+.top-bar
+  position: relative
+  width: 100%
+  display: flex
+  justify-content: center
+  flex-direction: row
+  flex-wrap: nowrap
+  align-items: center
+  padding: $major-padding
+  box-sizing: border-box
+  &-left
+    text-align: left
+    justify-self: flex-start
+    width: 100%
+    *>
+      display: inline-block
+  &-right
+    text-align: right
+    justify-self: flex-end
+    width: 100%
+    *>
+      display: inline-block
+
+.column
+  padding: $major-padding
+  box-sizing: border-box
+
+.hidden
+  display: none !important
+  opacity: 0 !important

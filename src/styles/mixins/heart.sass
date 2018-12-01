@@ -1,0 +1,30 @@
+@import '../mixins/keyframes.sass'
+
++keyframes(name-of-animation)
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+@mixin heart($size)
+  width: $size !important
+  height: $size !important
+
+// @-webkit-keyframes heartbeat
+//   0% {font-size: 3.8rem; color: $heartbeat-color}
+//   30% {font-size: 3rem}
+//   60% {font-size: 2.5rem}
+//   100% {font-size: 3rem}
+//
+// @-moz-keyframes heartbeat
+//   0% {font-size: 3.8rem; color: $heartbeat-color}
+//   30% {font-size: 3rem}
+//   60% {font-size: 2.5rem}
+//   100% {font-size: 3rem}
+//
+// @keyframes heartbeat {
+//   0% {font-size: 3.8rem; color: $heartbeat-color}
+//   30% {font-size: 3rem}
+//   60% {font-size: 2.5rem}
+//   100% {font-size: 3rem}
+// }

@@ -20,8 +20,12 @@ class MenuBar extends Component {
   render() {
     return (
       <div className="app-menu">
-        <div className="app-menu__control" onClick={this.handleClick}>menu control</div>
-        <div className={`app-menu__content ${this.state.active ? '' : 'hidden'}`}>{this.props.children}</div>
+        <div className="app-menu__control" onClick={this.handleClick}>
+          <div className="app-menu__control__line"></div>
+          <div className="app-menu__control__line"></div>
+          <div className="app-menu__control__line"></div>
+        </div>
+        <nav className={`app-menu__content ${this.state.active ? '' : 'hidden'}`}>{this.props.children}</nav>
       </div>
     )
   }
@@ -29,7 +33,7 @@ class MenuBar extends Component {
 
 function MenuItem(props) {
   return (
-    <div className="app-menu-item">{props.children}</div>
+    <div className="app-menu__item">{props.children}</div>
   )
 }
 
