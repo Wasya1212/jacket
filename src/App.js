@@ -4,6 +4,8 @@ import './styles/main.sass'
 
 import AppHeader from './components/Header'
 import AppHomePage from './pages/Home'
+import AppFirstHelpPage from './pages/FirstHelp'
+import AppCharge from './pages/Charge'
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,22 +31,16 @@ const BODY = () => (
   </div>
 )
 
-const FHELP = () => (
-  <div>
-    hello first help
-  </div>
-)
-
 const SETTINGS = () => (
   <div>
     hello settings
   </div>
 )
 
+let chargeValue = 100
+
 const CHARGE = () => (
-  <div>
-    hello charge
-  </div>
+  <AppCharge value={chargeValue}/>
 )
 
 const MAIN = () => (
@@ -54,7 +50,7 @@ const MAIN = () => (
       <Route path="/test" component={TEST} />
       <Route path="/health" component={HEALTH} />
       <Route path="/body" component={BODY} />
-      <Route path="/first-help" component={FHELP} />
+      <Route path="/first-help" component={AppFirstHelpPage} />
       <Route path="/settings" component={SETTINGS} />
       <Route path="/charge" component={CHARGE} />
     </Switch>
@@ -76,6 +72,29 @@ const USER = {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      val: 100
+    }
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({
+        val: this.state.val - 1
+      })
+      if (chargeValue > 0) {
+        chargeValue--
+      } else {
+        chargeValue = 100
+      }
+    }, 250)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -84,6 +103,7 @@ class App extends Component {
             <AppHeader menuItems={MENU_ITEMS} user={USER}/>
           </header>
           <MAIN />
+          <div>{this.state.val}</div>
         </div>
       </BrowserRouter>
     )
