@@ -5,7 +5,9 @@ import './styles/main.sass'
 import AppHeader from './components/Header'
 import AppHomePage from './pages/Home'
 import AppFirstHelpPage from './pages/FirstHelp'
-import AppCharge from './pages/Charge'
+import AppChargePage from './pages/Charge'
+import AppSettingsPage from './pages/Settings'
+import AppHealthStatusPage from './pages/HealthStatus'
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,43 +15,25 @@ import AppCharge from './pages/Charge'
 //
 // // library.add(Icons)
 
-const TEST = () => (
-  <div>
-    hello test
-  </div>
-)
-
 const HEALTH = () => (
-  <div>
-    hello health
-  </div>
-)
-
-const BODY = () => (
-  <div>
-    hello body
-  </div>
+  <AppHealthStatusPage />
 )
 
 const SETTINGS = () => (
-  <div>
-    hello settings
-  </div>
+  <AppSettingsPage />
 )
 
 let chargeValue = 100
 
 const CHARGE = () => (
-  <AppCharge value={chargeValue}/>
+  <AppChargePage value={chargeValue}/>
 )
 
 const MAIN = () => (
   <main className="main column">
     <Switch>
       <Route exact path="/" component={AppHomePage} />
-      <Route path="/test" component={TEST} />
       <Route path="/health" component={HEALTH} />
-      <Route path="/body" component={BODY} />
       <Route path="/first-help" component={AppFirstHelpPage} />
       <Route path="/settings" component={SETTINGS} />
       <Route path="/charge" component={CHARGE} />
@@ -60,7 +44,6 @@ const MAIN = () => (
 const MENU_ITEMS = [
   <Link to="/">Profile</Link>,
   <Link to="/health">Health Data</Link>,
-  <Link to="/body">Body Data</Link>,
   <Link to="/first-help">First Help</Link>,
   <Link to="/charge">Jacket Charge</Link>,
   <Link to="/settings">Settings</Link>,
@@ -78,6 +61,7 @@ class App extends Component {
       val: 100
     }
   }
+
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState({
@@ -103,7 +87,6 @@ class App extends Component {
             <AppHeader menuItems={MENU_ITEMS} user={USER}/>
           </header>
           <MAIN />
-          <div>{this.state.val}</div>
         </div>
       </BrowserRouter>
     )
