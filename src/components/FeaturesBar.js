@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 
-const FeaturesBar = () => (
-  <div className="app-features"></div>
+const Feature = (props) => (
+  <div className={`app-features__feature ${props.name || ''}`} disabled={props.disabled} onClick={props.onClick}>
+    {props.children}
+  </div>
 )
 
-export default FeaturesBar
+const FeaturesBar = (props) => (
+  <div className="app-features">{props.children}</div>
+)
+
+export { Feature, FeaturesBar }

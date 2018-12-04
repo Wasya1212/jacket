@@ -14,7 +14,21 @@ class MenuBar extends Component {
       active: !this.state.active
     })
 
-    console.log("Click!")
+    if (this.state.active === false) {
+      document.body.style.height = "100vh"
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.height = "auto"
+      document.body.style.overflow = "auto"
+    }
+  }
+
+  hide = () => {
+    this.setState({
+      active: false
+    })
+    document.body.style.height = "auto"
+    document.body.style.overflow = "auto"
   }
 
   render() {
@@ -25,7 +39,14 @@ class MenuBar extends Component {
           <div className="app-menu__control__line"></div>
           <div className="app-menu__control__line"></div>
         </div>
-        <nav className={`app-menu__content ${this.state.active ? '' : 'hidden'}`}>{this.props.children}</nav>
+        <nav className={`app-menu__content ${this.state.active ? '' : 'hidden'}`}>
+          {
+            this.props.children.map((child) => (
+              <div onClick={this.hide}>{child}</div>
+            ))
+          }
+          <div className="close" onClick={this.hide}></div>
+        </nav>
       </div>
     )
   }

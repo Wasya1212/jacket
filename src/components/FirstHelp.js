@@ -24,7 +24,7 @@ class FirstHelp extends Component {
   render() {
     return (
       <div className="app-first-help">
-        <div className="app-first-help__title">First Help</div>
+        <div className="app-first-help__title">First Aid</div>
         <div className="app-first-help__button">
           <button activated={this.state.activated.toString()} onClick={this.handleClick}>{this.state.activated ? "Disactivate" : "Activate"}</button>
         </div>

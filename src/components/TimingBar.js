@@ -21,13 +21,75 @@ const StatusBar = (props) => (
   </div>
 )
 
-const TimingBar = () => (
+function checkHeartbeat(heartbeat) {
+  let heartStatus = 'normal';
+
+  if (heartbeat < 91 || heartbeat > 149) {
+    heartStatus = 'critical'
+  }
+
+  if ((heartbeat > 91 && heartbeat < 110) || (heartbeat < 149 && heartbeat > 130)) {
+    heartStatus = 'unstable'
+  }
+
+  return heartStatus
+}
+
+function checkTemperature(temperature) {
+  let temperatureStatus = 'normal';
+
+  if (temperature < 35 || temperature > 40) {
+    temperatureStatus = 'critical'
+  }
+
+  if (temperature > 37 && temperature < 40) {
+    temperatureStatus = 'unstable'
+  }
+
+  return temperatureStatus
+}
+
+function checkHealthColor(heartStatus, temperatureStatus) {
+  let healthStatus = 'green'
+
+  if (heartStatus === 'unstable' || temperatureStatus === 'unstable') {
+    healthStatus = '#dade17'
+  }
+
+  if (heartStatus === 'critical' || temperatureStatus === 'critical') {
+    healthStatus = 'red'
+  }
+
+  return healthStatus
+}
+
+function timingHealt(healthStatuses) {
+  let statusBars = []
+
+  for (let i = 1; i <= Math.floor(healthStatuses.length / 12); i++) {
+
+    let { time, heartbeat, temperature } = healthStatuses[i * 11];
+
+    statusBars.unshift({
+      heart: checkHeartbeat(heartbeat),
+      temperature: checkTemperature(temperature),
+      color: checkHealthColor(checkHeartbeat(heartbeat), checkTemperature(temperature)),
+      time: time
+    })
+  }
+
+  return statusBars.map((statusBar, index) => (
+    <StatusBar key={`status-bar-${index}`} heart={statusBar.heart} temperature={statusBar.temperature} color={statusBar.color} time={statusBar.time} />
+  ))
+}
+
+const TimingBar = ({ health }) => (
   <div className="app-timing-bar">
     <h2 className="app-timing-bar__title">Timing statuses</h2>
     <div className="app-timing-bar__statuses">
-      <StatusBar heart="normal" temperature="normal" color="green" time="23:00"/>
-      <StatusBar heart="normal" temperature="high" color="yellow" time="22:00"/>
-      <StatusBar heart="normal" temperature="normal" color="green" time="21:00"/>
+      {
+        timingHealt(health)
+      }
     </div>
 
   </div>

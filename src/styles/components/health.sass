@@ -1,0 +1,27 @@
+@import '../variables.sass'
+
+.app-health-bar
+  &__content
+    width: 100%
+    display: -webkit-flex
+    display: -ms-flex
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    padding: .5rem 0
+  &__icon
+    display: inline-block
+    padding: 0 1rem
+    .icon
+      width: 40px !important
+      height: 40px !important
+  &__value
+    display: inline-block
+    margin-left: 1rem
+    font-weight: bold
+    color: $primary-text-color
+    font-size: 18px
+    strong
+      color: darken($primary-color, 10%)
+      font-size: 20px
+      text-shadow: 1px 1px 2px #f6f6f6

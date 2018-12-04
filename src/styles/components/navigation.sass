@@ -8,9 +8,38 @@
 //   @return $list
 
 @import '../variables.sass'
+@import '../mixins/keyframes.sass'
+
++keyframes(slide)
+  0%
+    transform: scale(0)
+    opacity: 0
+  100%
+    transform: scale(1)
+    opacity: 1
+
+.close
+  position: absolute
+  right: 1rem
+  top: 1rem
+  width: 60px
+  height: 60px
+  &::before, &::after
+    height: 60px
+    width: 5px
+    content: ''
+    display: inline-block
+    background-color: #5e5e5e
+    border-radius: 3px
+    right: 1rem
+    top: 1rem
+  &::after
+    transform: translate(0, 0) rotate(-47deg)
+  &::before
+    transform: translate(5px, 0) rotate(47deg)
 
 .app-menu
-  position: relative
+  // position: relative
   &__control
     position: relative
     display: -webkit-flex
@@ -30,9 +59,13 @@
       display: inline-block
       border-radius: 3px
   &__content
+    animation-name: slide
+    animation-duration: .35s
+    animation-direction: alternate
+    animation-timing-function: ease-in-out
     display: block
     position: absolute
-    top: 100%
+    top: 0
     left: 0
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
     padding: 1rem
@@ -41,10 +74,24 @@
     max-width: 400px
     overflow: hidden
     background-color: #fff
+    width: 100vw
+    height: 100vh
+    display: -webkit-flex
+    display: -ms-flex
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
   &__item
-    margin-bottom: .5rem
+    margin-bottom: 1rem
     width: 100%
+    text-align: center
+    padding: 1rem
     >*
       color: $header-text-color
+      font-size: 25px
+      font-weight: bold
+      font-family: sans-serif
+      text-transform: uppercase
       &:hover
         color: $header-text-color-additional

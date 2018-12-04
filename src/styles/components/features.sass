@@ -1,0 +1,35 @@
+@import '../variables.sass'
+
+.app-features
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  justify-content: space-around
+  border-top: 1px solid #c4c4c4
+  margin-top: .5rem
+  &__feature
+    position: relative
+    margin: 1rem
+    width: 30%
+    max-width: 250px
+    border-radius: 10px
+    background-color: #cbeed2
+    box-shadow: -1px 1px 3px #b4b4b4
+    cursor: pointer
+    transition: all .25s ease-in-out
+    &:active
+      transform: scale(0.90)
+      box-shadow: 0 0 1px #707070
+    &[disabled]
+      background-color: #f7f7f7
+    &::after
+      display: inline-block
+      padding-top: 100%
+      content: ''
+    &__icon
+      position: absolute
+      left: 50%
+      top: 50%
+      width: 80% !important
+      height: 80% !important
+      transform: translate(-50%, -50%)

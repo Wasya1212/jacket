@@ -29,10 +29,14 @@ const CHARGE = () => (
   <AppChargePage value={chargeValue}/>
 )
 
+const HOME = () => (
+  <AppHomePage />
+)
+
 const MAIN = () => (
   <main className="main column">
     <Switch>
-      <Route exact path="/" component={AppHomePage} />
+      <Route exact path="/" component={HOME} />
       <Route path="/health" component={HEALTH} />
       <Route path="/first-help" component={AppFirstHelpPage} />
       <Route path="/settings" component={SETTINGS} />
@@ -47,7 +51,6 @@ const MENU_ITEMS = [
   <Link to="/first-help">First Help</Link>,
   <Link to="/charge">Jacket Charge</Link>,
   <Link to="/settings">Settings</Link>,
-  <Link to="/test">Test</Link>
 ]
 const USER = {
   username: 'some user',
